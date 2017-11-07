@@ -31,10 +31,10 @@ gyp_rebuild_inside_node_modules () {
       echo " > $npmModule: npm install due to binary npm modules"
       rm -rf node_modules
       if [ -f binding.gyp ]; then
-        sudo npm install
+        sudo npm install --unsafe-perm
         sudo node-gyp rebuild || :
       else
-        sudo npm install
+        sudo npm install --unsafe-perm
       fi
     fi
 
@@ -101,11 +101,11 @@ fi
 
 if [ -f package.json ]; then
   # support for 0.9
-  sudo npm install
+  sudo npm install --unsafe-perm
 else
   # support for older versions
-  sudo npm install fibers
-  sudo npm install bcrypt
+  sudo npm install fibers --unsafe-perm
+  sudo npm install bcrypt --unsafe-perm
 fi
 
 cd /opt/<%= appName %>/
